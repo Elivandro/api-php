@@ -64,6 +64,16 @@ Publish the config file:
 php artisan vendor:publish --provider="RetroAchievements\Providers\RetroAchievementsProvider"
 ```
 
+### Manual Registration (if auto-discovery fails)
+
+If the provider is not discovered automatically, add it manually to `bootstrap/providers.php` (Laravel 11+):
+
+```php
+return [
+    RetroAchievements\Providers\RetroAchievementsProvider::class,
+];
+```
+
 Use the Facade:
 
 ```php
