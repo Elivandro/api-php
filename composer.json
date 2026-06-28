@@ -11,9 +11,9 @@
     "homepage": "https://github.com/retroachievements/api-php",
     "license": "MIT",
     "require": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "guzzlehttp/guzzle": "^7.12"
     },
-    "require-dev": {},
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "RetroAchievements\\Api\\": "src"
+            "RetroAchievements\\": "src"
         }
     },
     "autoload-dev": {
@@ -29,5 +29,28 @@
             "Tests\\": "tests"
         }
     },
-    "scripts": {}
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RetroAchievements\\Providers\\RetroAchievementsProvider"
+            ],
+            "aliases": {
+                "RetroAchievements": "RetroAchievements\\Facades\\RetroAchievements"
+            }
+        }
+    },
+    "scripts": {
+        "test":  "vendor/bin/phpunit --testdox",
+        "lint":  "vendor/bin/pint --test",
+        "fix":   "vendor/bin/pint",
+        "stan":  "vendor/bin/phpstan analyse",
+        "check": ["@lint", "@stan", "@test"]
+    },
+    "require-dev": {
+        "laravel/framework": "^13.17",
+        "laravel/pint": "^1.29",
+        "phpstan/phpstan": "^2.2",
+        "phpunit/phpunit": "^13.2",
+        "vlucas/phpdotenv": "^5.6"
+    }
 }
